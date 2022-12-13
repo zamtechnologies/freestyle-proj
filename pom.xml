@@ -108,7 +108,7 @@
 	</distributionManagement>
 	
 	<build>
-		<finalName>tesla-app</finalName>
+		<finalName>lexus-app</finalName>
 		
 		<plugins>
 			<plugin>
