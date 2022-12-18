@@ -1,0 +1,112 @@
+COMMANDS ON ANSIBLE SERVER 
+
+vi /etc/ansible/hosts
+  153  ansible 172.31.23.168
+  154  clear
+  155  ansible 172.31.23.168 -m ping
+  156  vi /etc/ansible/hosts
+  157  ls /temp/
+  158  vi key
+  159  chmod 400 key
+  160  vi /etc/ansible/hosts
+  161  ansible 172.31.23.168 -m ping
+  162  clear
+  163  ansible 172.31.23.168 -m ping
+  164  vi /etc/ansible/hosts
+  165  clear
+  166  ls
+  167  cat user.yml
+  168  clear
+  169  vi user.yml
+  170  ansible web-servers -m ping
+  171  clear
+  172  vi /etc/ansible/hosts
+  173  ls
+  174  ansible-playbook user.yml
+  175  vi /etc/ansible/hosts
+  176  ansible 172.31.26.211 -m ping
+  177  clear
+  178  vi /etc/ansible/hosts
+  179  ansible-playbook user.yml
+  180  clear
+  181  ansible 172.31.26.211 -m ping
+  182  vi /etc/ansible/hosts
+  183  ansible 172.31.26.211 -m ping
+  184  clear
+  185  cd /opt/
+  186  ls
+  187  mkdir car
+  188  sudo mkdir car
+  189  ls
+  190  cd car
+  191  pwd
+  192  cd
+  193  ls
+  194  ls push/
+  195  vi push/copy.yaml
+  196  ssh-keygen
+  197  ansible-playbook push/copy.yaml --check
+  198  
+  208  cp copy.yaml /opt/car
+  209  sudo cp copy.yaml /opt/car
+  210  clear
+  211  cd
+  212  ls /opt/car/
+  213  cd /opt/
+  214  mkdir target
+  215  sudo mkdir target
+  216  sudo mv car/ target/
+  217  clear
+  218  ls
+  219  sudo mv target/car/ /opt
+  220  sudo mv target/ car/
+  221  clear
+  222  ls
+  223  ls car/
+  224  ssh ansible@3.96.153.192
+  225  ls
+  226  ls projects/
+  227  ls projects/target/
+  228  sudo rm projects/target/lexus-app.war
+  229  clear
+  230  ls projects/target/
+
+COMMANDS ON TOMCAT SERVER
+1  clear
+    2  sudo hostnamectl set-hostname tomcat
+    3  sudo su
+    4  exit
+    5  clear
+    6  cd /opt/
+    7  sudo yum install zip git wget -y
+    8  sudo yum install java-11-openjdk -y
+    9  clear
+   10  sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.70/bin/apache-tomcat-9.0.70.tar.gz
+   11  sudo tar -xvf apache-tomcat-9.0.70.tar.gz
+   12  sudo rm -rf apache-tomcat-9.0.70.tar.gz
+   13  sudo mv apache-tomcat-9.0.70 tomcat
+   14  sudo chmod 777 -R /opt/tomcat
+   15  clear
+   16  sudo chown ec2-user -R /opt/tomcat
+   17  sh /opt/tomcat/bin/startup.sh
+   18  sudo ln -s /opt/tomcat/bin/startup.sh /usr/bin/starttomcat
+   19  sudo ln -s /opt/tomcat/bin/shutdown.sh /usr/bin/stoptomcat
+   20  ls
+   21  sudo vi tomcat/conf/server.xml
+   22  stoptomcat
+   23  starttomcat
+   24  cd
+   25  clear
+   26  ls /home
+   27  ls /opt/tomcat/conf/
+   28  ls /opt/tomcat/conf/tomcat-users.xml
+   29  vi /opt/tomcat/conf/tomcat-users.xml
+   30  ls /opt/tomcat/
+   31  ls /opt/tomcat/webapps/
+   32  ls /opt/tomcat/webapps/manager/
+   33  ls /opt/tomcat/webapps/manager/META-INF/
+   34  sudo vi /opt/tomcat/webapps/manager/META-INF/context.xml
+   35  clear
+   36  ls /opt/tomcat/webapps/
+   37  history
+
