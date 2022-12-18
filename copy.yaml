@@ -4,5 +4,5 @@
   tasks:
    - name: copy artifact into webapps
      copy:
-       src: /opt/projects/target/lexus-app.war
+       src: /opt/car/*war
        dest: /opt/tomcat/webapps
