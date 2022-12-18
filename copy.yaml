@@ -1,0 +1,8 @@
+---
+- hosts: web-servers
+  become: true
+  tasks:
+   - name: copy artifact into webapps
+     copy:
+       src: /opt/projects/target/lexus-app.war
+       dest: /opt/tomcat/webapps
