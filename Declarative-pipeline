@@ -1,0 +1,34 @@
+pipeline{
+    agent any
+    tools{
+        maven "maven"
+    }
+stages{
+    stage('1Gitclone'){
+    steps{
+        git 'https://github.com/kelafat007/my-maven-app.git'
+    }
+    }
+
+stage('2Build'){
+    steps{
+        sh "mvn clean package"
+    }
+}
+
+stage('3Ansible'){
+    steps{
+     sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//opt//projects', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'target/*war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+    }
+}
+    
+stage('3Deploy to tomcat'){
+    steps{
+        sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /opt/projects/copy.yaml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+        //ansiblePlaybook credentialsId: 'ansible-cred', disableHostKeyChecking: true, installation: 'ansible-server', playbook: '/opt/projetcs/copy.yaml'
+        //ansiblePlaybook credentialsId: 'ansible-cred', installation: 'ansible-server', playbook: 'copy.yaml'
+      //  ansiblePlaybook(credentialsId: 'private_key', inventory: 'inventories/a/hosts', playbook: 'my_playbook.yml')
+    }
+}
+    }
+}
